@@ -4,7 +4,7 @@ debug_dir=$1
 platform=$2
 
 if [ $# -eq 1 ]
-then 
+then
 	echo "building project in $1"
 	platform="x"
 elif [ $# -ne 2 ]
@@ -39,8 +39,10 @@ cmake -DWITH_DEBUG=OFF -DCMAKE_INSTALL_PREFIX=./mysql  -DMYSQL_DATADIR=./mysql/d
   $Gplatform\
   ..
 
-if [ $platform != "Xcode" ]
+if [ $? -eq 0 ]
 then
-    $makerule
+  if [ $platform != "Xcode" ]
+  then
+      $makerule
+  fi
 fi
-
